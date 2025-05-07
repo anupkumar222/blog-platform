@@ -1,4 +1,5 @@
 'use client';
+import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
@@ -8,6 +9,7 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   const router = useRouter();
+  const { setUser } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,7 +24,8 @@ const Login = () => {
       setMessage('Login successful!');
       setMessageType('success');
       localStorage.setItem('loggedInUser', username);
-      router.push('/blog'); 
+      setUser(username)
+      router.push('/blog');
     } else {
       setMessage('Invalid username or password.');
       setMessageType('danger');

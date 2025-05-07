@@ -2,20 +2,26 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  // const [loggedInUser, setLoggedInUser] = useState(null);
 
-  useEffect(() => {
-    const user = localStorage.getItem("loggedInUser");
-    setLoggedInUser(user);
-  }, []);
+  // useEffect(() => {
+  //   const user = localStorage.getItem("loggedInUser");
+  //   setLoggedInUser(user);
 
-  const handleLogout = () => {
-    localStorage.removeItem("loggedInUser");
-    setLoggedInUser(null);
-    window.location.href = "/login";
-  };
+  // }, []);
+
+
+
+  // const handleLogout = () => {
+  //   localStorage.removeItem("loggedInUser");
+  //   setLoggedInUser(null);
+  //   window.location.href = "/login";
+  // };
+
+  const { user, logout } = useAuth();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-3">
@@ -37,7 +43,7 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            {!loggedInUser ? (
+            {!user ? (
               <>
                 <li className="nav-item">
                   <Link href="/login" className="nav-link mx-2">
@@ -54,9 +60,9 @@ const Navbar = () => {
               <li className="nav-item">
                 <button
                   className="btn btn-outline-danger ms-2"
-                  onClick={handleLogout}
+                  onClick={logout}
                 >
-                  <i className="bi bi-box-arrow-right me-1"></i> Logout
+                  <i className="bi bi-box-arrow-right me-1" ></i> Logout
                 </button>
               </li>
             )}

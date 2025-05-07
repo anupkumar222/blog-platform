@@ -25,8 +25,4 @@ It saves everything using **localStorage**, so you don’t need a database or ba
 ```bash
 git clone https://github.com/anupkumar222/blog-platform.git
 cd blog_app
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> c6ecb32583f6d3af49d83cd15dd913d993c95e09
